@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>SalutationApplication</name>
+	<name>Chapter2</name>
 	<comment></comment>
 	<projects>
-		<project>SalutationApplication-ejb</project>
-		<project>SalutationApplication-war</project>
-		<project>RESTApplication</project>
+		<project>Chapter2-ejb</project>
+		<project>Chapter2-war</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

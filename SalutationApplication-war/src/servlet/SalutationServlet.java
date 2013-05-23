@@ -21,8 +21,10 @@ public class SalutationServlet extends HttpServlet {
 	
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+		
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        
         try {
             out.println("<html>");
             out.println("<head>");
@@ -30,6 +32,7 @@ public class SalutationServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>"+ salutation.getFormalSalutation("Sherlock Holmes")+"</h1>");
+            out.println("<h2>" + salutation.getContextInformation());
             out.println("</body>");
             out.println("</html>");
         } finally {            
