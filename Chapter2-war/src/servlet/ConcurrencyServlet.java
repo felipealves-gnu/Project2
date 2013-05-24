@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import packt.SimulationBeanManaged;
-import packt.SimulationContainerManaged;
 
 @WebServlet("/Concurrencyservlet")
 public class ConcurrencyServlet extends HttpServlet {
@@ -31,7 +30,6 @@ public class ConcurrencyServlet extends HttpServlet {
 			out.println("<title>Servlet ConcurrencyServlet</title>");
 			out.println("</head>");
 			out.println("<body>");
-			out.println("<h3>Simulation Container Managed State: " + simulationBeanManaged.geState() + "</h3>");
 			out.println("</body>");
 			out.println("</html>");
 		} finally {

@@ -10,7 +10,7 @@ public class SimulationBeanManaged {
 	public enum State {PAUSED, RUNNING, TERMINATED};
 	private State state;
 
-	public State geState(){
+	public State getState(){
 		return state;
 	}
 	
