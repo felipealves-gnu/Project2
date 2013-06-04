@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="SalutationApplication">
+        <wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
+        <dependent-module archiveName="SalutationApplication-ejb.jar" deploy-path="/" handle="module:/resource/SalutationApplication-ejb/SalutationApplication-ejb">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SalutationApplication-war.war" deploy-path="/" handle="module:/resource/SalutationApplication-war/SalutationApplication-war">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="RESTApplication.war" deploy-path="/" handle="module:/resource/RESTApplication/RESTApplication">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>
