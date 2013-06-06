@@ -1,10 +1,19 @@
 package packt;
 
+import java.rmi.RemoteException;
+
+import javax.ejb.EJBException;
+import javax.ejb.SessionSynchronization;
+import javax.ejb.Stateful;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-public class CityFacade extends AbstractFacade<City> {
+@Stateful
+@TransactionManagement(TransactionManagementType.CONTAINER)
+public class CityFacade extends AbstractFacade<City>  implements SessionSynchronization{
 	
 	@PersistenceContext(unitName = "EntityBeanApplication-ejbPU")
 	private EntityManager em;
@@ -23,14 +32,32 @@ public class CityFacade extends AbstractFacade<City> {
 	}
 	
 	public void changePopulation(String cityName, long count) {
-	System.out.println("Executing changePopulation");
-	Query query = em.createQuery( "UPDATE City c " +
-									"SET c.population = c.population+:count " +
-									"WHERE c.name = :cityName");
-	query.setParameter("count", count);
-	query.setParameter("cityName", cityName);
-	int result = query.executeUpdate();
-	System.out.println("result: " + result);
-	System.out.println("--- end changePopulation");
+		System.out.println("Executing changePopulation");
+		Query query = em.createQuery( "UPDATE City c " +
+										"SET c.population = c.population + :count " +
+										"WHERE c.name = :cityName");
+		query.setParameter("count", count);
+		query.setParameter("cityName", cityName);
+		int result = query.executeUpdate();
+		System.out.println("result: " + result);
+		System.out.println("--- end changePopulation");
 	}
+
+	@Override
+	public void afterBegin() throws EJBException, RemoteException {
+		System.out.println("\nCityFacade afterBegin");		
+	}
+
+
+	@Override
+	public void beforeCompletion() throws EJBException, RemoteException {
+		System.out.println("CityFacade beforeCompletion");
+	}
+	
+	@Override
+	public void afterCompletion(boolean committed) throws EJBException,
+	RemoteException {
+		System.out.println("CityFacade afterCompletion\n");		
+	}
+	
 }
