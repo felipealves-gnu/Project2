@@ -53,7 +53,6 @@ public class PartsBean implements Serializable{
         this.quantity = quantity;
     }
     
-    
     public Long getId() {
         return id;
     }
