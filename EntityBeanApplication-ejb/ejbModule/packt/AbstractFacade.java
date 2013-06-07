@@ -26,15 +26,16 @@ public abstract class AbstractFacade<T> {
     }
 
     public void remove(T entity) {
+    	System.out.println("--- AbstractFacade remove - " + this.getClass().getSimpleName());
         getEntityManager().remove(getEntityManager().merge(entity));
     }
 
     public T find(Object id) {
         return getEntityManager().find(entityClass, id);
     }
-
     
-	public List<T> findAll() {
+    public List<T> findAll() {    
+    	System.out.println("--- AbstractFacade findAll - " + this.getClass().getSimpleName());
         CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
         return getEntityManager().createQuery(cq).getResultList();
