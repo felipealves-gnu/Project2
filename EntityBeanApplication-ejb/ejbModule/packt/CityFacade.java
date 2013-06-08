@@ -5,6 +5,8 @@ import java.rmi.RemoteException;
 import javax.ejb.EJBException;
 import javax.ejb.SessionSynchronization;
 import javax.ejb.Stateful;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
@@ -31,8 +33,10 @@ public class CityFacade extends AbstractFacade<City>  implements SessionSynchron
 		getEntityManager().persist(entity);
 	}
 	
+	//@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	//@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 	public void changePopulation(String cityName, long count) {
-		System.out.println("Executing changePopulation");
+		System.out.println("--- start changePopulation");
 		Query query = em.createQuery( "UPDATE City c " +
 										"SET c.population = c.population + :count " +
 										"WHERE c.name = :cityName");

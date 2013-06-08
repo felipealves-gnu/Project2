@@ -34,10 +34,10 @@ public class PopulationServlet extends HttpServlet {
 		
 		try {
 			clearTables();
-//			populationManager.addCity("Tokyo", "Japan", 32450000);
-//			populationManager.updatePopulation("Tokyo", 8888);
-//			
-//			List<City> cities = cityFacade.findAll();
+			populationManager.addCity("Tokyo", "Japan", 32450000);
+			populationManager.updatePopulation("Tokyo", 8888);
+			
+			List<City> cities = cityFacade.findAll();
 			
 			out.println("<html>");
 			out.println("<head>");
@@ -45,13 +45,12 @@ public class PopulationServlet extends HttpServlet {
 			out.println("</head>");
 			out.println("<body>");
 			out.println("</body>");
-			out.println("</html>");
 			
-//			for (City c : cities) {
-//				out.println("<h5>" + c.getName() + " - " + c.getPopulation() + "</h5>");
-//			}
-//			out.println("</body>");
-//			out.println("</html>");
+ 			for (City c : cities) {
+ 				out.println("<h5>" + c.getName() + " - " + c.getPopulation() + "</h5>");
+			}
+			out.println("</body>");
+			out.println("</html>");
 		} finally {
 			out.close();
 		}
