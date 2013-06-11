@@ -35,7 +35,7 @@ public abstract class AbstractFacade<T> {
     }
     
     public List<T> findAll() {    
-    	//System.out.println("--- AbstractFacade findAll - " + this.getClass().getSimpleName());
+    	System.out.println("--- AbstractFacade findAll - " + this.getClass().getSimpleName());
         CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery(); 
         cq.select(cq.from(entityClass));
         return getEntityManager().createQuery(cq).getResultList();

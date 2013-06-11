@@ -3,10 +3,6 @@ package packt;
 import java.io.Serializable;
 import javax.persistence.*;
 
-/**
- * Entity implementation class for Entity: City
- *
- */
 @Entity
 public class City implements Serializable {
 	private static final long serialVersionUID = 1L;

@@ -2,7 +2,9 @@ package packt;
 
 import java.rmi.RemoteException;
 
+import javax.annotation.Resource;
 import javax.ejb.EJBException;
+import javax.ejb.SessionContext;
 import javax.ejb.SessionSynchronization;
 import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
@@ -20,6 +22,9 @@ public class CityFacade extends AbstractFacade<City>  implements SessionSynchron
 	@PersistenceContext(unitName = "EntityBeanApplication-ejbPU")
 	private EntityManager em;
 	
+	@Resource
+	private SessionContext context;
+	
 	@Override
 	protected EntityManager getEntityManager() {
 		return em;
@@ -33,9 +38,12 @@ public class CityFacade extends AbstractFacade<City>  implements SessionSynchron
 		getEntityManager().persist(entity);
 	}
 	
-	//@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	//@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-	public void changePopulation(String cityName, long count) {
+	//@TransactionAttribute(TransactionAttributeType.SUPPORTS)
+	//@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+	//@TransactionAttribute(TransactionAttributeType.NEVER)
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void changePopulation(String cityName, long count) throws IllegalPopulationException {
 		System.out.println("--- start changePopulation");
 		Query query = em.createQuery( "UPDATE City c " +
 										"SET c.population = c.population + :count " +
@@ -43,6 +51,11 @@ public class CityFacade extends AbstractFacade<City>  implements SessionSynchron
 		query.setParameter("count", count);
 		query.setParameter("cityName", cityName);
 		int result = query.executeUpdate();
+		//if(result > 1) {
+		if(count < 0) {
+		//context.setRollbackOnly();
+			throw new IllegalPopulationException();
+		}
 		System.out.println("result: " + result);
 		System.out.println("--- end changePopulation");
 	}

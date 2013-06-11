@@ -26,9 +26,14 @@ public class PopulationManager implements SessionSynchronization{
     	cityFacade.create(city);
     }
     
+    //@TransactionAttribute(TransactionAttributeType.MANDATORY)
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void updatePopulation(String cityName, long count){
-    	cityFacade.changePopulation(cityName, count);
+    	try {
+			cityFacade.changePopulation(cityName, count);
+		} catch (IllegalPopulationException e) {
+			System.out.println("IllegalPopulationException caught");
+		}
     }
 
 	@Override
