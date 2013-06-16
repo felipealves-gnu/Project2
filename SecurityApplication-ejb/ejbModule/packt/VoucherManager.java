@@ -2,10 +2,13 @@ package packt;
 
 import java.math.BigDecimal;
 
+import javax.annotation.security.DeclareRoles;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
 
 @Stateful
+@DeclareRoles ({"employee", "manager"})
 public class VoucherManager {
 
 	@EJB
@@ -33,6 +36,7 @@ public class VoucherManager {
      * This method is intended to be used by an employee to submit a voucher
      * for approval by a manager.
      */
+    @RolesAllowed("employee")
     public void submit(){
     	System.out.println("voucher submitted");
     }

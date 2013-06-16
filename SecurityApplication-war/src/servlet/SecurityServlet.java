@@ -33,7 +33,7 @@ public class SecurityServlet extends HttpServlet {
 				out.println("<body>");
 				out.println("<h3>Voucher was submitted</h3>");
 				out.println("</body>");
-				out.println("</html>");
+				out.println("</html>");				
 			} finally {            
 	            out.close();
 			}
@@ -42,4 +42,6 @@ public class SecurityServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
 	}
+	
+	
 }
