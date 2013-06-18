@@ -4,13 +4,12 @@ import java.security.Principal;
 
 import javax.annotation.Resource;
 import javax.annotation.security.DeclareRoles;
-import javax.annotation.security.RunAs;
 import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 
 @Stateless
 @DeclareRoles("manager")
-@RunAs("manager")
+//@RunAs("manager")
 public class VoucherVerification {
 
 	@Resource

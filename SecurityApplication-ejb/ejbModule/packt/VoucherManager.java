@@ -1,11 +1,14 @@
 package packt;
 
 import java.math.BigDecimal;
+import java.security.Principal;
 
+import javax.annotation.Resource;
 import javax.annotation.security.DeclareRoles;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
+import javax.ejb.SessionContext;
 import javax.ejb.Stateful;
 
 @Stateful
@@ -19,6 +22,8 @@ public class VoucherManager {
 	VoucherFacade voucherFacade;
 	@EJB
 	VoucherVerification voucherVerification;
+	@Resource
+	private SessionContext sessionContext;
 	
 	@PermitAll
     public void createVoucher(String name, String destination, BigDecimal amount) {
@@ -54,10 +59,20 @@ public class VoucherManager {
      * 
      * @return boolean
      */
-    @RolesAllowed("manager")
+    //@RolesAllowed("manager")
     public boolean approve(){
-    	voucher.setApproved(true);
-    	return true;
+    	Principal principal = sessionContext.getCallerPrincipal();
+    	System.out.println("Principal: " + principal.getName());
+    	
+    	//if("mary".equals(principal.getName())){
+    	if(sessionContext.isCallerInRole("manager")){
+    		voucher.setApproved(true);
+    		System.out.println("approve method returned true");
+    		return true;
+    	}else{
+    		System.out.println("approve method returned false");
+    		return false;
+    	}
     }
     
     /**

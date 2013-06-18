@@ -26,15 +26,9 @@
 		<auth-method>BASIC</auth-method>
 		<realm-name>file</realm-name>
 	</login-config>
-	
- 	<security-role>
-		<description/>
-	    <role-name>employee</role-name>
-	</security-role>
+ 	<security-role>         
+ 	 	<description/>         
+ 	 	<role-name>employee</role-name>     
+ 	</security-role>
 
-<!--	
-	<security-role>
-        <description/>
-        <role-name>manager</role-name>
-    </security-role>-->
 </web-app>
