@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="RegistrationApplication">
+        <wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
+        <dependent-module archiveName="RegistrationApplication-ejb.jar" deploy-path="/" handle="module:/resource/RegistrationApplication-ejb/RegistrationApplication-ejb">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="RegistrationApplication-war.war" deploy-path="/" handle="module:/resource/RegistrationApplication-war/RegistrationApplication-war">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>
