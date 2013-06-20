@@ -1,0 +1,15 @@
+package packt;
+
+import javax.interceptor.AroundInvoke;
+import javax.interceptor.InvocationContext;
+
+public class SimpleInterceptor {
+	
+	@AroundInvoke
+	public Object simpleMethod(InvocationContext context) throws Exception{	
+		System.out.println("SimpleInterceptor entered: " + context.getMethod().getName());
+		Object result = context.proceed(); //invokes the target method, in this case RegistrationManager.register, returning method's return
+		System.out.println("SimpleInterceptor exited: " + context.getMethod().getName());
+		return result;
+	}
+}
