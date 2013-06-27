@@ -1,12 +1,12 @@
 package packt;
 
 import javax.annotation.security.DeclareRoles;
-import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.interceptor.AroundInvoke;
+import javax.interceptor.ExcludeDefaultInterceptors;
 import javax.interceptor.Interceptors;
 import javax.interceptor.InvocationContext;
 import javax.persistence.EntityManager;
@@ -14,7 +14,9 @@ import javax.persistence.PersistenceContext;
 
 @Stateful
 @DeclareRoles({"employee", "manager"})
-@TransactionManagement(TransactionManagementType.BEAN)
+@ExcludeDefaultInterceptors
+//@TransactionManagement(TransactionManagementType.BEAN)
+@Interceptors(SimpleInterceptor.class)
 public class RegistrationManager {
 	@EJB
 	AttendeeFacade attendeeFacade;
@@ -26,7 +28,8 @@ public class RegistrationManager {
 	//@ExcludeClassInterceptors
 	//@Interceptors({MethodInterceptor.class})
 	//@Interceptors(ValidationInterceptor.class)
-	@Interceptors(SecurityInterceptor.class)
+	//@Interceptors(SecurityInterceptor.class)
+	@Interceptors({HitCounterInterceptor.class, TimeInMethodInterceptor.class})
 	public Attendee register(String name, String title, String company) {
 		System.out.println("register");
 		attendee = new Attendee(name, title, company);
