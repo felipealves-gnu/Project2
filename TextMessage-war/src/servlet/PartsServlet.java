@@ -8,12 +8,12 @@ import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.jms.BytesMessage;
 import javax.jms.Connection;
+import javax.jms.Destination;
 import javax.jms.JMSException;
 import javax.jms.MessageProducer;
 import javax.jms.Queue;
 import javax.jms.QueueConnectionFactory;
 import javax.jms.Session;
-import javax.jms.TextMessage;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,7 +39,7 @@ public class PartsServlet extends HttpServlet {
 			try {
 				connection = queueConnectionFactory.createConnection();
 				Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-				MessageProducer messageProducer = (MessageProducer)	session.createProducer(queue);
+				MessageProducer messageProducer = (MessageProducer)	session.createProducer((Destination) queue);
 				
 				BytesMessage bytesMessage = session.createBytesMessage();
 				bytesMessage.writeInt(12345);

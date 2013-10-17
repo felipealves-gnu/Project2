@@ -5,7 +5,6 @@
 	<projects>
 		<project>SalutationApplication-ejb</project>
 		<project>SalutationApplication-war</project>
-		<project>RESTApplication</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

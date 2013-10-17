@@ -10,7 +10,7 @@ import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 
-@MessageDriven(mappedName = "jms/PartsBean", activationConfig = { 
+@MessageDriven(mappedName = "jms/PartsQueue", activationConfig = { 
 		@ActivationConfigProperty(propertyName = "ackowledgeMode", propertyValue = "Auto-acknowledge"),
 		@ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue")
 		})
